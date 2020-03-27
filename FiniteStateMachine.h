@@ -34,7 +34,7 @@ class FiniteStateMachine
 
     private:
     bool started{false};
-    void throwIfStateNotRegistered(State state);
+    void throwIfStateNotRegistered(State state) const;
 };
 
 
@@ -117,7 +117,7 @@ FiniteStateMachine<StateBaseType>::registerState(State state, Data&&... data)
 
 template <typename StateBaseType>
 void
-FiniteStateMachine<StateBaseType>::throwIfStateNotRegistered(State state)
+FiniteStateMachine<StateBaseType>::throwIfStateNotRegistered(State state) const
 {
     auto potentialStatePair = states_.find(state);
     if (potentialStatePair == states_.end())
@@ -125,5 +125,6 @@ FiniteStateMachine<StateBaseType>::throwIfStateNotRegistered(State state)
         throw std::out_of_range{ "State not registered." };
     }
 }
+
 
 #endif 

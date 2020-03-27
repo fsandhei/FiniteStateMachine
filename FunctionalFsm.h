@@ -11,7 +11,6 @@ class FunctionalFsm : public FSM
 {
     public:
     explicit FunctionalFsm();
-    void changeState(State state);
     void startStateMachine();
 };
 
@@ -29,11 +28,5 @@ FunctionalFsm::startStateMachine()
     changeState(State::SomeState1);
 }
 
-
-void
-FunctionalFsm::changeState(State state)
-{
-    FSM::changeState(state);
-}
 
 #endif 

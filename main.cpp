@@ -7,5 +7,4 @@ int main()
     fsm.startStateMachine();
     fsm.changeState(State::SomeState2);
     fsm.changeState(State::SomeState1);
-
 }
