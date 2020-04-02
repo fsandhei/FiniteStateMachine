@@ -2,29 +2,32 @@
 #define STATEBASE_H
 
 #include "FiniteStateMachine.h"
-#include <vector>
+#include <iostream>
+#include "SomeInterface.h"
 
-template <typename... ValidStates>
 class StateBase;
-
 using FSM = FiniteStateMachine<StateBase>;
 
-template <typename... ValidStates>
 class StateBase
     : public FSM::StateBase
+    , public SomeInterface
 {
     public:
     explicit StateBase(FSM& fsm);
+    void doSomething() final;
 
-    private:
-    std::vector<ValidStates> legalStates;
 };
 
-template <typename... ValidStates>
 StateBase::StateBase(FSM& fsm)
     : FSM::StateBase{fsm}
-    , legalStates{std::forward<ValidStates>()}
 {
+}
+
+
+void
+StateBase::doSomething()
+{
+    std::cout<<"someInterface::doSomething()" << std::endl;
 }
 
 #endif 

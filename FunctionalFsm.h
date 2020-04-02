@@ -2,16 +2,18 @@
 #define FUNCTIONALFSM_H
 
 #include "FiniteStateMachine.h"
-#include "StateBase.h"
+#include "SomeInterface.h"
 #include "State.h"
 #include "State1.h"
 #include "State2.h"
 
-class FunctionalFsm : public FSM 
+
+class FunctionalFsm : public FSM, public SomeInterface
 {
     public:
     explicit FunctionalFsm();
     void startStateMachine();
+    void doSomething() override;
 };
 
 
@@ -28,5 +30,11 @@ FunctionalFsm::startStateMachine()
     changeState(State::SomeState1);
 }
 
+
+void 
+FunctionalFsm::doSomething()
+{
+    currentState().doSomething();
+}
 
 #endif 
